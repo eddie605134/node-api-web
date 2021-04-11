@@ -11,10 +11,12 @@ module.exports = router
 
 let refreshTokens = []
 /* Login */
+router.use(m.setHeader)
 router.post('/login', async (userReq, userRes) => {
   await log.login(userReq.body)
     .then(token => {
       refreshTokens.push(token?.refreshToken)
+      userRes.header('Access-Control-Allow-Origin', '*')
       return userRes.json(token).status(200)
     })
     .catch(err => userRes.json(err))
@@ -53,7 +55,7 @@ router.get('/', m.authenticateToken, async (req, res) => {
 })
 
 /* A post by Employee ID */
-router.get('/:id', m.mustBeInteger, async (req, res) => {
+router.get('/:id', m.mustBeInteger, m.authenticateToken, async (req, res) => {
   const id = req.params.id
   await post.getPost(id)
     .then(post => res.json(post))
@@ -67,7 +69,7 @@ router.get('/:id', m.mustBeInteger, async (req, res) => {
 })
 
 /* Insert a new post */
-router.post('/', m.checkFieldsPost, async (req, res) => {
+router.post('/', m.checkFieldsPost, m.authenticateToken, async (req, res) => {
   await post.insertPost(req.body)
     .then(post => res.status(201).json({
       message: `The post #${post.id} has been created`,
@@ -77,7 +79,7 @@ router.post('/', m.checkFieldsPost, async (req, res) => {
 })
 
 /* Update a post */
-router.put('/:id', m.mustBeInteger, m.checkFieldsPost, async (req, res) => {
+router.put('/:id', m.mustBeInteger, m.checkFieldsPost, m.authenticateToken, async (req, res) => {
   const id = req.params.id
   await post.updatePost(id, req.body)
     .then(post => res.json({
@@ -93,7 +95,7 @@ router.put('/:id', m.mustBeInteger, m.checkFieldsPost, async (req, res) => {
 })
 
 /* Delete a post */
-router.delete('/:id', m.mustBeInteger, async (req, res) => {
+router.delete('/:id', m.mustBeInteger, m.authenticateToken, async (req, res) => {
   const id = req.params.id
 
   await post.deletePost(id)
