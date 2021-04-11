@@ -1,6 +1,8 @@
-const filename = '../data/posts.json'
+const path = require('path');
+const filename = path.resolve(__dirname, '../data/posts.json')
 let posts = require(filename)
 const helper = require('../helpers/helper.js')
+
 function getPosts () {
   return new Promise((resolve, reject) => {
     if (posts.length === 0) {
@@ -53,7 +55,8 @@ function deletePost (id) {
   return new Promise((resolve, reject) => {
     helper.mustBeInArray(posts, id)
       .then(() => {
-        posts = posts.filter(p => p.id !== id)
+        posts = posts.filter(p => p.id != id)
+        console.log(posts);
         helper.writeJSONFile(filename, posts)
         resolve()
       })

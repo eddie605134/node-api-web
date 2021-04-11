@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "userName": "eddie",
+    "password": "123",
+    "userAuth": "1",
+    "department": "taiwan",
+    "tourData": [],
+    "createdAt": "Mon Aug 27 2018 15:16:17 GMT+0200 (CEST)",
+    "updatedAt": "Mon Aug 27 2018 15:16:17 GMT+0200 (CEST)"
+  },
+  {
+    "id": 3,
+    "createdAt": "Sun Apr 11 2021 01:41:55 GMT+0800 (台北標準時間)",
+    "updatedAt": "Sun Apr 11 2021 01:41:55 GMT+0800 (台北標準時間)",
+    "userName": "windy",
+    "password": "456",
+    "userAuth": "3",
+    "tourData": [],
+    "department": "Germany"
+  }
+]
