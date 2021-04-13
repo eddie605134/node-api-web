@@ -1,9 +1,9 @@
-GET http://localhost:1337/api/v1/posts/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImVkZGllIiwidXNlcklkIjoxLCJpYXQiOjE2MTgxMjk4NTksImV4cCI6MTYxODEzMTA1OX0.bjbkZfe3QRTwM3Why6e0pg8BUU9xsqPEG_DJ_FmeVAM
+GET http://localhost:3000/api/v1/posts/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IndpbmR5IiwidXNlcklkIjozLCJ1c2VyQXV0aCI6IjMiLCJpYXQiOjE2MTgzMDQ5OTMsImV4cCI6MTYxODMwNjE5M30.JRjMgKCcDbk11z4JKJgKjSid2OzucJoB2ulcRp3O5uk
 
 ### 查看 
 
-POST http://localhost:1337/api/v1/posts/token
+POST http://localhost:3000/api/v1/posts/token
 Content-Type: application/json
 
 {
@@ -11,17 +11,17 @@ Content-Type: application/json
 }
 
 ### 重取token
-DELETE http://localhost:1337/api/v1/posts/logout
+DELETE http://localhost:3000/api/v1/posts/logout
 Content-Type: application/json
 
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IndpbmR5IiwiaWF0IjoxNjE4MTI2NDE0fQ.xhKJta_AKgxeAr-bNLuwujRnxAW6vU3oGn0l8QKrmcM"
 }
-### 登出
-POST http://localhost:1337/api/v1/posts/login
+### 登入
+POST http://localhost:3000/api/v1/posts/login
 Content-Type: application/json
 
 {
-  "userName": "eddie",
-  "password": "123"
+  "userName": "windy",
+  "password": "456"
 }

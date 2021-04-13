@@ -20,10 +20,11 @@ function checkFieldsPost (req, res, next) {
 }
 
 function authenticateToken (req, res, next) {
-  const authHeader = req.headers['authorization']
-  const token = authHeader && authHeader.split(' ')[1]
-  if (token == null) return res.sendStatus(401)
+  const authHeader = req.headers['authentication']
+  const token = authHeader && authHeader.replace('Bearer', '')
+  console.log(token);
 
+  if (token == null) return res.sendStatus(401)
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) return res.sendStatus(403)
     req.user = user
@@ -32,7 +33,7 @@ function authenticateToken (req, res, next) {
 }
 
 function setHeader (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', '');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
